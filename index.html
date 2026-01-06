@@ -13,7 +13,6 @@
         <link href="css/styles.css" rel="stylesheet" />
 
         <style>
-            /* Cambia el color naranja por el color que desees (ejemplo: Azul) */
             :root {
                 --bs-primary: #073088; 
             }
@@ -21,11 +20,52 @@
                 background-color: #073088 !important;
             }
             .text-primary {
-                color: #073088 !important;
+                color: #3498db !important;
+            }
+
+            /* --- MODO NOCTURNO MEJORADO --- */
+            body.dark-mode {
+                background-color: #121212 !important;
+                color: #e0e0e0 !important;
+            }
+            .dark-mode .resume-section {
+                background-color: #121212 !important;
+            }
+            .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode .nav-link {
+                color: #ffffff !important;
+            }
+            .dark-mode .subheading {
+                color: #3498db !important;
+            }
+            .dark-mode p, .dark-mode li, .dark-mode .lead {
+                color: #b0b0b0 !important;
+            }
+            
+            /* Botón Flotante */
+            #darkModeToggle {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: none;
+                background-color: #3498db;
+                color: white;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
             }
         </style>
     </head>
     <body id="page-top">
+        
+        <button id="darkModeToggle"><i class="fas fa-moon"></i></button>
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Ana Maria Ontaneda Villao</span>
@@ -54,7 +94,7 @@
                     </h1>
                     <div class="subheading mb-5">
                         Condominios Alban Borja Blq A1 Dpto A1 · Guayaquil · 0990491990 ·
-                        <a href="mailto:anitaontanedita@gmail.com">anitaontanedita@gmail.com</a>
+                        <a href="mailto:anitaontanedita@gmail.com" style="color: #5b8de9 !important;">anitaontanedita@gmail.com</a>
                     </div>
                     <p class="lead mb-5">Maestra de Educación Básica con amplia experiencia en el diseño y facilitación de lecciones dinámicas y personalizadas. Apasionada por el aprendizaje de sus alumnos y comprometida con su desarrollo integral.</p>
                 </div>
@@ -86,7 +126,7 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">DOCENTE EBG - 1ER. GRADO</h3>
                             <div class="subheading mb-3">Uni. Edu. Fiscomisional Fe y Alegria</div>
-                            <p>Como profesora de primer grado en la Unidad Educativa Fiscomisional Fe y Alegría, me enfoqué en crear un ambiente de aprendizaje estimulante y seguro para mis estudiantes.</p>
+                            <p>Como profesora de primer grado en la Unidad Educativa Fiscomisional Fe y Alegría, me enfocqué en crear un ambiente de aprendizaje estimulante y seguro para mis estudiantes.</p>
                             <p>Mis responsabilidades incluyeron la planificación y ejecución de lecciones adaptadas, el uso de métodos innovadores, la evaluación del progreso de los alumnos, la colaboración con otros miembros del personal educativo y padres de familia, la promoción del desarrollo de habilidades sociales y emocionales, y el fomento del amor por el aprendizaje y la inclusión. Trabajé incansablemente para inspirar el crecimiento académico y personal de cada niño.</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Mayo 2023 - Febrero 2024</span></div>
@@ -95,7 +135,7 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">DOCENTE 3ER GRADO DE EDUCACIÓN BÁSICA</h3>
                             <div class="subheading mb-3">Unidad Educativa MINERVA</div>
-                            <p>Durante mis prácticas preprofesionales en la Unidad Educativa MINERVA, desempeñé un papel activo en el proceso de enseñanza y aprendizaje de los estudiantes de tercer grado de educación básica. Trabajando en estrecha colaboración con el personal docente y bajo la supervisión de profesionales experimentados, participé en una variedad de actividades diseñadas para apoyar el desarrollo académico y personal de los alumnos.</p> 
+                            <p>Durante mis prácticas preprofesionales en la Unidad Educativa MINERVA, desempeñé un papel activo en el proceso de enseñanza y aprendizaje de los estudiantes de tercer grado de educación básica. Trabajando en estrecha colaboración con el personal docente y bajo la supervisión de profesionales experimentados, participó en una variedad de actividades diseñadas para apoyar el desarrollo académico y personal de los alumnos.</p> 
                             <div class="subheading mb-1">Mis responsabilidades principales incluyeron:</div>
                             <p>Planificación y preparación de lecciones</p>
                             <p>Facilitación de actividades de enseñanza-aprendizaje en diversas áreas curriculares</p>
@@ -213,7 +253,31 @@
                 </div>
             </section>
         </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const btn = document.getElementById('darkModeToggle');
+                const body = document.body;
+                
+                if(btn) {
+                    btn.addEventListener('click', function() {
+                        body.classList.toggle('dark-mode');
+                        const icon = btn.querySelector('i');
+                        
+                        if (body.classList.contains('dark-mode')) {
+                            icon.classList.replace('fa-moon', 'fa-sun');
+                            btn.style.backgroundColor = '#f1c40f';
+                            btn.style.color = '#000';
+                        } else {
+                            icon.classList.replace('fa-sun', 'fa-moon');
+                            btn.style.backgroundColor = '#073088';
+                            btn.style.color = '#fff';
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
